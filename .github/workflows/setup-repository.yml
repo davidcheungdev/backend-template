@@ -68,7 +68,7 @@ jobs:
       - name: Move files to root
         shell: bash
         # The output/ folder contains a single folder which is the
-        # generated project by cookiecutter. We want to move all the project
+        # generated project by zero. We want to move all the project
         # files into the root directory so we can reinitialize git in the next step
         run: |
           rsync -r ./output/. . && \
