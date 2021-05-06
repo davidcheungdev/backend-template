@@ -1,5 +1,5 @@
-name: template-only
-description: for templating purpose
+name: templates
+description: for templating purposes only
 author: 'Commit'
 zeroVersion: '>= 0.0.4'
 
@@ -9,5 +9,4 @@ template:
     - '<%'
     - '%>'
   inputDir: 'templates'
-  outputDir: 'my-repo'
-parameters:
+  outputDir: 'output'

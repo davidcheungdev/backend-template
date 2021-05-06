@@ -1,10 +1,12 @@
-name: haha7
+
+name: # Fill in name
 
 shouldPushRepositories: false
 
 modules:
-  template:
+  templates:
     files:
-    dir: haha7
-    repo: github.com/davidcheungdev/haha7
-    source: https://github.com/davidcheungdev/haha6
+      dir: output
+      source: .
+    parameters:
+      domain: zero-david.online

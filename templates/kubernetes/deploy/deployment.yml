@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ cookiecutter.name }}
+  name: <% .Name %>
 spec:
   revisionHistoryLimit: 5
   selector:
     matchLabels:
-      app: {{ cookiecutter.name }}
+      app: <% .Name %>
   template:
     spec:
       containers:
-        - name: {{ cookiecutter.name }}
+        - name: <% .Name %>
           image: fake-image
           resources:
             requests:
@@ -24,7 +24,7 @@ spec:
               name: http
           envFrom:
           - configMapRef:
-              name: {{ cookiecutter.name }}-config
+              name: <% .Name %>-config
           env:
           - name: SERVER_PORT
             value: "80"
