@@ -51,8 +51,8 @@ jobs:
           echo "${GITHUB_WORKSPACE}/bin" >> $GITHUB_PATH
       - name: Scaffolding repository
         run: zero create
-      - run: ls
-      - run: ls ./output
+      - run: ls -la
+      - run: ls -la ./output
 
       - name: Prepare root directory
         shell: bash
@@ -60,31 +60,29 @@ jobs:
         run: |
           find ./ -maxdepth 1 \
           ! -name '.git' \
-          ! -name 'output/' \
+          ! -name 'output' \
           ! -name '.' \
           ! -exec rm -rf {} +
-      - run: ls
-      - run: ls ./output
+      - run: ls -la
+      - run: ls -la ./output
       - name: Move files to root
         shell: bash
         # The output/ folder contains a single folder which is the
         # generated project by cookiecutter. We want to move all the project
         # files into the root directory so we can reinitialize git in the next step
         run: |
-          rsync -r ./output/*/ .
-      - run: ls
-      - run: ls ./output
-      #     rsync -r ./output/*/ . && \
-      #     rm -rf ./output/
-      # - name: Reinitialize git repository
-      #   shell: bash
-      #   # Reinitialize git after scaffolding this repository.
-      #   # We use `git checkout --orphan` to create a branch in a git init-like state.
-      #   # By force pushing this as `main` we end up with a new clean git history.
-      #   run: |
-      #     git config --global user.email "github-actions[bot]@users.noreply.github.com" && \
-      #     git config --global user.name "github-actions[bot]" && \
-      #     git checkout --orphan temp-branch && \
-      #     git add . && \
-      #     git commit -m 'Initial commit' && \
-      #     git push origin temp-branch:master -f
+          rsync -r ./output/. . && \
+          rm -rf ./output/
+      # rsync -r ./output/. .
+      - name: Reinitialize git repository
+        shell: bash
+        # Reinitialize git after scaffolding this repository.
+        # We use `git checkout --orphan` to create a branch in a git init-like state.
+        # By force pushing this as `main` we end up with a new clean git history.
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com" && \
+          git config --global user.name "github-actions[bot]" && \
+          git checkout --orphan temp-branch && \
+          git add . && \
+          git commit -m 'Initial commit' && \
+          git push origin temp-branch:master -f
