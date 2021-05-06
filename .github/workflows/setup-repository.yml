@@ -38,9 +38,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install cookiecutter
-
+      - name: Install Zero
+        id: install_zero
+        run: |
+          mkdir ${GITHUB_WORKSPACE}/bin
+          cd ${GITHUB_WORKSPACE}/bin
+          LATEST_ZERO_DOWNLOAD_URL=$(curl --silent "https://api.github.com/repos/commitdev/zero/releases/latest" | jq -r ".assets | .[]  | select(.name | contains(\"Linux_x86_64\")) | .browser_download_url")
+          ZERO_BINARY_FILE_NAME=$(curl --silent "https://api.github.com/repos/commitdev/zero/releases/latest" | jq -r ".assets | .[]  | select(.name | contains(\"Linux_x86_64\")) | .name")
+          curl -OJL $LATEST_ZERO_DOWNLOAD_URL
+          tar -xvf "./${ZERO_BINARY_FILE_NAME}"
+          ./zero version
+          echo "${GITHUB_WORKSPACE}/bin" >> $GITHUB_PATH
       - name: Scaffolding repository
         # cookiecutter is command-line utility to create projects from templates
         # https://github.com/cookiecutter/cookiecutter
@@ -49,7 +57,7 @@ jobs:
         #                 cookiecutter.json file content
         #
         # --output-dir    Where to output the generated project dir into
-        run: cookiecutter . --no-input --output-dir ./cookiecutter-temp
+        run: zero create
 
       - name: Prepare root directory
         shell: bash
@@ -68,15 +76,15 @@ jobs:
         run: |
           rsync -r ./cookiecutter-temp/*/ . && \
           rm -rf ./cookiecutter-temp/
-      - name: Reinitialize git repository
-        shell: bash
-        # Reinitialize git after scaffolding this repository.
-        # We use `git checkout --orphan` to create a branch in a git init-like state.
-        # By force pushing this as `main` we end up with a new clean git history.
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com" && \
-          git config --global user.name "github-actions[bot]" && \
-          git checkout --orphan temp-branch && \
-          git add . && \
-          git commit -m 'Initial commit' && \
-          git push origin temp-branch:master -f
+      # - name: Reinitialize git repository
+      #   shell: bash
+      #   # Reinitialize git after scaffolding this repository.
+      #   # We use `git checkout --orphan` to create a branch in a git init-like state.
+      #   # By force pushing this as `main` we end up with a new clean git history.
+      #   run: |
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com" && \
+      #     git config --global user.name "github-actions[bot]" && \
+      #     git checkout --orphan temp-branch && \
+      #     git add . && \
+      #     git commit -m 'Initial commit' && \
+      #     git push origin temp-branch:master -f

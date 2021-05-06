@@ -1,0 +1,13 @@
+name: template-only
+description: for templating purpose
+author: 'Commit'
+zeroVersion: '>= 0.0.4'
+
+template:
+  strictMode: true
+  delimiters:
+    - '<%'
+    - '%>'
+  inputDir: 'templates'
+  outputDir: 'my-repo'
+parameters:

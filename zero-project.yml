@@ -1,0 +1,10 @@
+name: haha7
+
+shouldPushRepositories: false
+
+modules:
+  template:
+    files:
+    dir: haha7
+    repo: github.com/davidcheungdev/haha7
+    source: https://github.com/davidcheungdev/haha6
