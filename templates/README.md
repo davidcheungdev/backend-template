@@ -1,4 +1,4 @@
-#  {{cookiecutter.name}} Backend service
+#  <% .Name %> Backend service
 
 # Essentials steps to get your backend server deployed
 - Webserver that listens on a port
@@ -15,7 +15,7 @@
 ## Kubernetes
 Your application is deployed on your EKS cluster through circleCI, you can see the pod status on kubernetes in your application namespace:
 ```
-kubectl -n {{cookiecutter.name}} get pods
+kubectl -n <% .Name %> get pods
 ```
 ### Configuring
 You can update the resource limits in the [kubernetes/base/deployment.yml][base-deployment], and control fine-grain customizations based on environment and specific deployments such as Scaling out your production replicas from the [overlays configurations][env-prod]

@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Do not run scaffolding on template repository
         shell: bash
-        # This workflow runs when the `cookiecutter.json` file is modified.
+        # This workflow runs when the `zero-project.yml` file is modified.
         # This is the trick to re-init a repository, but we don't want to
         # run this action if this file is modified in the origin template repository.
         #
@@ -56,7 +56,7 @@ jobs:
 
       - name: Prepare root directory
         shell: bash
-        # Remove all files and folder exepct .git/ and cookiecutter-temp/
+        # Remove all files and folder exepct .git/ and output/
         run: |
           find ./ -maxdepth 1 \
           ! -name '.git' \
