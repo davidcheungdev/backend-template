@@ -32,7 +32,7 @@ jobs:
           #
           # Generate a new personal access token with the workflow `scope` does the trick.
           # Checkout my blog post https://stefanbuck.com/blog for alternative options
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_SETUP_TOKEN || secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v2
         with:
