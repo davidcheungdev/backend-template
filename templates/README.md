@@ -1,10 +1,10 @@
 #  <% .Name %> Backend service
 
 # Essentials steps to get your backend server deployed
-- Webserver that listens on a port
-- Dockerfile that builds that 
+- Webserver that listens on a port <% index .Params `containerPort` %>
+- Dockerfile builds and serves on port <% index .Params `containerPort` %>
 - Creates an ingress, service and deployment in Kubernetes cluster
-- CI/CD to build and push the image to deployment
+- CI/CD to deploy your application
 
 # Things that happened behind the scene
 - ECR repository has been created for this repo

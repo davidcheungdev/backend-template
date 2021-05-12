@@ -15,12 +15,12 @@ metadata:
 
 spec:
   rules:
-  - host: <% .Name %>.<% index .Params `domain` %>
+  - host: <% .Name %>-api.<% index .Params `domain` %>
     http:
       paths:
         - path: /(.*)
           backend:
-            serviceName: python-app
+            serviceName: <% .Name %>
             servicePort: http
   tls:
   - hosts:

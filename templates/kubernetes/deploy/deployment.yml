@@ -16,19 +16,10 @@ spec:
             requests:
               memory: 128Mi
               cpu: 0.1
-            limits:
-              memory: 512Mi
-              cpu: 1.0
           ports:
-            - containerPort: 80
+            - containerPort: <% index .Params `containerPort` %>
               name: http
           envFrom:
           - configMapRef:
               name: <% .Name %>-config
-          env:
-          - name: SERVER_PORT
-            value: "80"
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
+

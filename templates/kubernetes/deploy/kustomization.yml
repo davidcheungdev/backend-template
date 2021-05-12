@@ -9,11 +9,8 @@ resources:
 configMapGenerator:
 - name: <% .Name %>-config
   literals:
-    - DATABASE_ENGINE=postgres
-    - DATABASE_HOST=
-    - DATABASE_PORT=5432
-    - DATABASE_NAME=
-    - SERVICE_PORT=80
+    - MY_ENV_VAR_1=foo
+    - MY_ENV_VAR_2=bar
 
 commonLabels:
   app: <% .Name %>

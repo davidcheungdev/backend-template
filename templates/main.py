@@ -2,7 +2,7 @@ from flask import Flask
 import os
 
 app = Flask(__name__)
-port = (os.environ.get("PORT", 80))
+port = (os.environ.get("PORT", <% index .Params `containerPort` %>))
 
 @app.route("/")
 def hello():
