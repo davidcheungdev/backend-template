@@ -1,7 +1,13 @@
 # ------------------------
+# IMPORTANT:
+# Committing a change with this file will trigger Github actions 
+# to template and rewrite the repository
+# ------------------------
+#
 # Fill in name of your App
-# this becomes the deployment and namespace name
-name:
+# this becomes the deployment/namespace/svc name in kubernetes
+# must be alpha-numeric with dashes only
+name: asdas-asdasd-dfgsdf
 
 shouldPushRepositories: false
 
