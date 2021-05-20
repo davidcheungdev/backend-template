@@ -1,5 +1,6 @@
 name: Setup repository
 on:
+  # Upon zero-project.yml is edited it will template out and rewrite the git history of the repo
   push:
     paths:
       - zero-project.yml
