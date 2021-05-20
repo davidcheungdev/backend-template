@@ -1,17 +1,17 @@
 #  <% .Name %> Backend service
 
-# Essentials steps to get your backend server deployed
+# Getting Started
+### Essentials steps to get your backend server deployed
 - Webserver that listens on a port <% index .Params `containerPort` %>
 - Dockerfile builds and serves on port <% index .Params `containerPort` %>
-- Creates an ingress, service and deployment in Kubernetes cluster
-- CI/CD to deploy your application
-
-# Things that happened behind the scene
-- ECR repository has been created for this repo
-- AWS key pair with access to push/read ECR repo
-- Cluster name / AWS account id / deployer role name
 
 # Deployment
+### Things that happened behind the scene
+- CI/CD will run in Github actions to deploy your application
+- It will build an image and push to ECR repository
+- it will creates an ingress, service and deployment in Kubernetes cluster using kustomize
+- It will update deployment image to use the most recent built Image
+
 ## Kubernetes
 Your application is deployed on your EKS cluster through circleCI, you can see the pod status on kubernetes in your application namespace:
 ```
