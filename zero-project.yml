@@ -6,8 +6,8 @@
 #
 # Fill in name of your App
 # this becomes the deployment/namespace/svc name in kubernetes
-# must be alpha-numeric with dashes only
-name: asdas-asdasd-dfgsdf
+# must be lowercase alpha-numeric with dashes only
+name: 
 
 shouldPushRepositories: false
 
